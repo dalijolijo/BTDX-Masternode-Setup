@@ -11,13 +11,12 @@
 FROM ubuntu:16.04
 
 LABEL maintainer="Jon D. (dArkjON), David B. (dalijolijo)"
-LABEL version="0.2"
+LABEL version="2.1.0.0"
 
 # Make ports available to the world outside this container
 # DefaultPort = 8329
 # RPCPort = 8330
 # TorPort = 9050 (see https://github.com/LIMXTEC/Bitcloud/blob/master/doc/tor.md)
-EXPOSE 8329 8330 9050
 
 USER root
 
@@ -72,25 +71,37 @@ RUN echo '*** Running updates and installing required packages ***' && \
 #
 # Cloning and Compiling Bitcloud Wallet
 #
-RUN echo '*** Cloning and Compiling Bitcloud Wallet ***' && \
-    cd && \
-    echo "Execute a git clone of LIMXTEC/Bitcloud. Please wait..." && \
-    git clone https://github.com/LIMXTEC/Bitcloud.git && \
-    cd Bitcloud && \
-    ./autogen.sh && \
-    ./configure --disable-dependency-tracking --enable-tests=no --without-gui && \
-    make && \
-    cd && \
-    cd Bitcloud/src && \
-    strip bitcloudd && \
-    cp bitcloudd /usr/local/bin && \
-    strip bitcloud-cli && \
-    cp bitcloud-cli /usr/local/bin && \
-    strip bitcloud-tx && \
-    cp bitcloud-tx /usr/local/bin && \
-    chmod 775 /usr/local/bin/bitcloud* && \   
-    cd && \
-    rm -rf Bitcloud
+#RUN echo '*** Cloning and Compiling Bitcloud Wallet ***' && \
+#    cd && \
+#    echo "Execute a git clone of LIMXTEC/Bitcloud. Please wait..." && \
+#    git clone https://github.com/LIMXTEC/Bitcloud.git && \
+#    cd Bitcloud && \
+#    ./autogen.sh && \
+#    ./configure --disable-dependency-tracking --enable-tests=no --without-gui && \
+#    make && \
+#    cd && \
+#    cd Bitcloud/src && \
+#    strip bitcloudd && \
+#    cp bitcloudd /usr/local/bin && \
+#    strip bitcloud-cli && \
+#    cp bitcloud-cli /usr/local/bin && \
+#    strip bitcloud-tx && \
+#    cp bitcloud-tx /usr/local/bin && \
+#    chmod 775 /usr/local/bin/bitcloud* && \   
+#    cd && \
+#    rm -rf Bitcloud
+
+#
+# Download Bitcloud release
+#
+RUN echo '*** Download Bitcloud release ***' && \
+    mkdir -p /root/src && \
+    cd /root/src && \
+    wget https://github.com/LIMXTEC/Bitcloud/releases/download/2.1.0.0/linux.Ubuntu.16.04.LTS-static-libstdc.tar.gz && \
+    tar xzf *.tar.gz && \
+    chmod 775 bitcloud* && \
+    cp bitcloud* /usr/local/bin && \
+    rm *.tar.gz
 
 #
 # Copy Supervisor Configuration and bitcloud.conf
