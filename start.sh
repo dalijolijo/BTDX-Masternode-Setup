@@ -15,8 +15,8 @@ printf "** Set rpcuser, rpcpassword and masternode genkey ***\n"
 mkdir -p /home/bitcloud/.bitcloud/
 chown -R bitcloud:bitcloud /home/bitcloud/
 sudo -u bitcloud cp /tmp/bitcloud.conf /home/bitcloud/.bitcloud/
-sed -i "s|^\(rpcuser=\).*|rpcuser=btdxmasternode$(openssl rand -base64 32)|g" /home/bitcloud/.bitcloud/bitcloud.conf
-sed -i "s|^\(rpcpassword=\).*|rpcpassword=$(openssl rand -base64 32)|g" /home/bitcloud/.bitcloud/bitcloud.conf
+#sed -i "s|^\(rpcuser=\).*|rpcuser=btdxmasternode$(openssl rand -base64 32)|g" /home/bitcloud/.bitcloud/bitcloud.conf
+#sed -i "s|^\(rpcpassword=\).*|rpcpassword=$(openssl rand -base64 32)|g" /home/bitcloud/.bitcloud/bitcloud.conf
 sed -i "s|^\(masternodeprivkey=\).*|masternodeprivkey=${MN_KEY}|g" /home/bitcloud/.bitcloud/bitcloud.conf
 sed -i "s|^\(externalip=\).*|externalip=${BTDX_IP}|g" /home/bitcloud/.bitcloud/bitcloud.conf 
 RPC_ALLOWIP=$(ip addr | grep 'global eth0' | xargs | cut -f2 -d ' ')

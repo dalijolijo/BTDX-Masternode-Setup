@@ -4,12 +4,12 @@ set -u
 GIT_REPO="dalijolijo"
 GIT_PROJECT="BTDX-Masternode-Setup"
 DOCKER_REPO="dalijolijo"
-IMAGE_NAME="btdx-masternode"
+IMAGE_NAME="btdx-blockbook"
 IMAGE_TAG="2.1.0.1" #BTDX Version 2.1.0.1
 CONFIG="/home/bitcloud/.bitcloud/bitcloud.conf"
-CONTAINER_NAME="btdx-masternode"
+CONTAINER_NAME="btdx-blockbook"
 DEFAULT_PORT="8329"
-RPC_PORT="8330"
+RPC_PORT="8062"
 TOR_PORT="9050"
 WEB="bit-cloud.info/files" # without "https://" and without the last "/" (only HTTPS accepted)
 BOOTSTRAP="bootstrap.tar.gz"

@@ -21,7 +21,7 @@ ENV RELEASE_TAR=${RELEASE_TAR}
 RUN echo $RELEASE_TAR
 
 # Make ports available to the world outside this container
-# DefaultPort = 8329
+# DefaultPort = 8062
 # RPCPort = 8330
 # TorPort = 9050 (see https://github.com/LIMXTEC/Bitcloud/blob/master/doc/tor.md)
 
